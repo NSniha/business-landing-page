@@ -2233,7 +2233,7 @@ img {
 /* ==================== Testimonials Section Start ==================== */
 
 .testimonials-section {
-    padding: 96px 0px 94px;
+    padding: 100px 0px 100px;
     background: var(--page-bg);
     overflow: hidden;
 }

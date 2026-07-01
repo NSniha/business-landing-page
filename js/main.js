@@ -312,3 +312,102 @@ projectNext?.addEventListener("click", () => {
 
 
 
+const testimonialSlider = document.getElementById("testimonialSlider");
+const testimonialQuote = document.getElementById("testimonialQuote");
+const testimonialAvatar = document.getElementById("testimonialAvatar");
+const testimonialName = document.getElementById("testimonialName");
+const testimonialRole = document.getElementById("testimonialRole");
+const testimonialPrev = document.getElementById("testimonialPrev");
+const testimonialNext = document.getElementById("testimonialNext");
+
+const testimonialItems = [
+  {
+    quote: "“Working with Digimark has been an absolute game-changer for our business. Their team perfectly blended creativity and technical expertise to deliver a stunning website and seamless user experience. We saw a 45% increase in customer engagement within just two months after the launch. Highly recommended!”",
+    avatar: "images/testimonial-avatar-01.jpg",
+    name: "Garry Wheeler",
+    role: "Chief Marketing Officer, NovaTech Solutions",
+  },
+  {
+    quote: "“The team transformed our digital presence with a polished interface, faster performance, and a smoother customer journey. Their process was organized, creative, and focused on real business outcomes from day one.”",
+    avatar: "images/testimonial-avatar-02.jpg",
+    name: "Sophia Bennett",
+    role: "Founder, BrightCart Studio",
+  },
+  {
+    quote: "“From branding to development, every detail felt thoughtful and premium. We launched with confidence and started seeing better engagement, stronger leads, and clearer customer trust within weeks.”",
+    avatar: "images/testimonial-avatar-03.jpg",
+    name: "Michael Carter",
+    role: "Product Lead, Zestflow Labs",
+  },
+];
+
+let activeTestimonialIndex = 0;
+let testimonialLocked = false;
+let testimonialInterval = null;
+
+const renderTestimonial = () => {
+  const item = testimonialItems[activeTestimonialIndex];
+
+  if (!item || !testimonialQuote || !testimonialAvatar || !testimonialName || !testimonialRole) return;
+
+  testimonialQuote.textContent = item.quote;
+  testimonialAvatar.src = item.avatar;
+  testimonialAvatar.alt = item.name;
+  testimonialName.textContent = item.name;
+  testimonialRole.textContent = item.role;
+};
+
+const setActiveTestimonial = (index) => {
+  if (!testimonialSlider || testimonialLocked) return;
+
+  const total = testimonialItems.length;
+  activeTestimonialIndex = (index + total) % total;
+  testimonialLocked = true;
+
+  testimonialSlider.classList.add("is-changing");
+
+  window.setTimeout(() => {
+    renderTestimonial();
+
+    requestAnimationFrame(() => {
+      testimonialSlider.classList.remove("is-changing");
+      testimonialLocked = false;
+    });
+  }, 380);
+};
+
+const startTestimonialAutoSlide = () => {
+  if (!testimonialSlider || testimonialItems.length <= 1) return;
+
+  stopTestimonialAutoSlide();
+
+  testimonialInterval = window.setInterval(() => {
+    setActiveTestimonial(activeTestimonialIndex + 1);
+  }, 5200);
+};
+
+const stopTestimonialAutoSlide = () => {
+  if (!testimonialInterval) return;
+
+  window.clearInterval(testimonialInterval);
+  testimonialInterval = null;
+};
+
+testimonialPrev?.addEventListener("click", () => {
+  setActiveTestimonial(activeTestimonialIndex - 1);
+  startTestimonialAutoSlide();
+});
+
+testimonialNext?.addEventListener("click", () => {
+  setActiveTestimonial(activeTestimonialIndex + 1);
+  startTestimonialAutoSlide();
+});
+
+testimonialSlider?.addEventListener("mouseenter", stopTestimonialAutoSlide);
+testimonialSlider?.addEventListener("mouseleave", startTestimonialAutoSlide);
+testimonialSlider?.addEventListener("focusin", stopTestimonialAutoSlide);
+testimonialSlider?.addEventListener("focusout", startTestimonialAutoSlide);
+
+if (!isReducedMotion) {
+  startTestimonialAutoSlide();
+}
