@@ -1176,7 +1176,6 @@ img {
     height: 100%;
     min-height: 760px;
     object-fit: cover;
-    filter: grayscale(100%) contrast(1.03) brightness(0.96);
 }
 
 .about-play-btn {
@@ -1267,8 +1266,8 @@ img {
 
 .about-feature-card:hover {
     transform: translateY(-4px);
-    background: rgb(239, 255, 233);
-    box-shadow: rgba(23, 37, 29, 0.08) 0px 18px 40px;
+    background: rgb(176 255 148);
+    box-shadow: rgb(23 37 29 / 5%) 0px 18px 40px;
 }
 
 .about-icon {
@@ -1309,8 +1308,10 @@ img {
     margin-top: 96px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    align-items: end;
+    align-items: center;
     gap: 32px;
+    justify-content: center;
+    text-align: center;
 }
 
 .about-stat-item h3 {
@@ -1337,7 +1338,7 @@ img {
     }
 
     .about-media-card, .about-main-img {
-        min-height: 720px;
+        min-height: 772px;
     }
 
     .about-feature-grid {
