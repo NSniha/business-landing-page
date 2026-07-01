@@ -308,3 +308,7 @@ projectPrev?.addEventListener("click", () => {
 projectNext?.addEventListener("click", () => {
   setActiveProjectCategory(activeProjectIndex + 1);
 });
+
+
+
+
