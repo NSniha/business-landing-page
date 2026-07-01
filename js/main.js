@@ -148,3 +148,163 @@ if (counterGroups.length) {
 window.addEventListener("load", () => {
   document.body.classList.add("page-loaded");
 });
+
+
+
+
+const projectTabs = document.querySelectorAll(".project-tab");
+const projectsGallery = document.getElementById("projectsGallery");
+const projectPrev = document.getElementById("projectPrev");
+const projectNext = document.getElementById("projectNext");
+
+const projectCategories = [
+  {
+    key: "uiux",
+    projects: [
+      {
+        title: "Zestflow - CRM Dashboard",
+        image: "images/project-uiux-01.jpg",
+        alt: "Zestflow CRM dashboard project",
+      },
+      {
+        title: "Roundup - Smart Meeting",
+        image: "images/project-uiux-02.jpg",
+        alt: "Roundup smart meeting project",
+      },
+      {
+        title: "Furnishly - Furniture App",
+        image: "images/project-uiux-03.jpg",
+        alt: "Furnishly furniture app project",
+      },
+      {
+        title: "Activity Tracking Apps - Liquid IOS",
+        image: "images/project-uiux-04.jpg",
+        alt: "Activity tracking app project",
+      },
+    ],
+  },
+  {
+    key: "web",
+    projects: [
+      {
+        title: "Nexora - SaaS Landing Page",
+        image: "images/project-web-01.jpg",
+        alt: "SaaS website dashboard project",
+      },
+      {
+        title: "BrightCart - Ecommerce Website",
+        image: "images/project-web-02.jpg",
+        alt: "Ecommerce website project",
+      },
+      {
+        title: "Cloudline - Business Platform",
+        image: "images/project-web-03.jpg",
+        alt: "Business platform web development project",
+      },
+      {
+        title: "Medix - Healthcare Portal",
+        image: "images/project-web-04.jpg",
+        alt: "Healthcare web portal project",
+      },
+    ],
+  },
+  {
+    key: "branding",
+    projects: [
+      {
+        title: "Aurora - Brand Identity",
+        image: "images/project-branding-01.jpg",
+        alt: "Brand identity design project",
+      },
+      {
+        title: "Vertex - Logo System",
+        image: "images/project-branding-02.jpg",
+        alt: "Logo system design project",
+      },
+      {
+        title: "Bloomly - Visual Guidelines",
+        image: "images/project-branding-03.jpg",
+        alt: "Visual guideline branding project",
+      },
+      {
+        title: "Northbay - Creative Campaign",
+        image: "images/project-branding-04.jpg",
+        alt: "Creative campaign branding project",
+      },
+    ],
+  },
+];
+
+let activeProjectIndex = 0;
+let projectSlideLocked = false;
+
+const getProjectIndex = (key) => {
+  return projectCategories.findIndex((category) => category.key === key);
+};
+
+const updateProjectTabs = () => {
+  const activeKey = projectCategories[activeProjectIndex].key;
+
+  projectTabs.forEach((tab) => {
+    const isActive = tab.dataset.projectTab === activeKey;
+
+    tab.classList.toggle("is-active", isActive);
+    tab.setAttribute("aria-selected", isActive ? "true" : "false");
+  });
+};
+
+const updateProjectCards = () => {
+  if (!projectsGallery) return;
+
+  const activeProjects = projectCategories[activeProjectIndex].projects;
+  const cards = projectsGallery.querySelectorAll(".project-card");
+
+  cards.forEach((card, index) => {
+    const project = activeProjects[index];
+    const image = card.querySelector("img");
+    const title = card.querySelector("h3");
+
+    if (!project || !image || !title) return;
+
+    image.src = project.image;
+    image.alt = project.alt;
+    title.textContent = project.title;
+  });
+};
+
+const setActiveProjectCategory = (index) => {
+  if (!projectsGallery || projectSlideLocked) return;
+
+  const total = projectCategories.length;
+  activeProjectIndex = (index + total) % total;
+  projectSlideLocked = true;
+
+  projectsGallery.classList.add("is-changing");
+
+  window.setTimeout(() => {
+    updateProjectTabs();
+    updateProjectCards();
+
+    requestAnimationFrame(() => {
+      projectsGallery.classList.remove("is-changing");
+      projectSlideLocked = false;
+    });
+  }, 280);
+};
+
+projectTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    const targetIndex = getProjectIndex(tab.dataset.projectTab);
+
+    if (targetIndex === -1 || targetIndex === activeProjectIndex) return;
+    setActiveProjectCategory(targetIndex);
+  });
+});
+
+projectPrev?.addEventListener("click", () => {
+  setActiveProjectCategory(activeProjectIndex - 1);
+});
+
+projectNext?.addEventListener("click", () => {
+  setActiveProjectCategory(activeProjectIndex + 1);
+});
