@@ -411,3 +411,55 @@ testimonialSlider?.addEventListener("focusout", startTestimonialAutoSlide);
 if (!isReducedMotion) {
   startTestimonialAutoSlide();
 }
+
+
+
+
+/* ==================== FAQ Accordion Start ==================== */
+
+const faqSection = document.querySelector(".faq-section");
+const faqItems = document.querySelectorAll(".faq-item");
+const faqMoreBtn = document.getElementById("faqMoreBtn");
+
+const closeFaqItem = (item) => {
+  const question = item.querySelector(".faq-question");
+  const icon = item.querySelector(".faq-icon ion-icon");
+
+  item.classList.remove("is-active");
+  question?.setAttribute("aria-expanded", "false");
+  icon?.setAttribute("name", "chevron-down-outline");
+};
+
+const openFaqItem = (item) => {
+  const question = item.querySelector(".faq-question");
+  const icon = item.querySelector(".faq-icon ion-icon");
+
+  item.classList.add("is-active");
+  question?.setAttribute("aria-expanded", "true");
+  icon?.setAttribute("name", "chevron-up-outline");
+};
+
+faqItems.forEach((item) => {
+  const question = item.querySelector(".faq-question");
+
+  question?.addEventListener("click", () => {
+    const isActive = item.classList.contains("is-active");
+
+    faqItems.forEach((faqItem) => closeFaqItem(faqItem));
+
+    if (!isActive) openFaqItem(item);
+  });
+});
+
+faqMoreBtn?.addEventListener("click", () => {
+  if (!faqSection) return;
+
+  const isOpen = faqSection.classList.toggle("is-more-open");
+  const btnText = faqMoreBtn.querySelector("span");
+  const btnIcon = faqMoreBtn.querySelector("ion-icon");
+
+  if (btnText) btnText.textContent = isOpen ? "Show Less" : "More Questions";
+  if (btnIcon) btnIcon.setAttribute("name", isOpen ? "arrow-up-outline" : "arrow-forward-outline");
+});
+
+/* ==================== FAQ Accordion End ==================== */
