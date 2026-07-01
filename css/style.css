@@ -66,6 +66,8 @@ img {
 
 /* ==================== Global Styles End ==================== */
 
+
+
 /* ==================== Header Section Start ==================== */
 
 .site-header {
@@ -213,6 +215,9 @@ img {
 
 /* ==================== Header Section End ==================== */
 
+
+
+
 /* ==================== Hero Section Start ==================== */
 
 .hero-section {
@@ -304,7 +309,7 @@ img {
     max-width: 640px;
     margin-inline: auto;
     color: var(--dark);
-    font-size: clamp(60px, 6.14vw, 76px);
+    font-size: clamp(60px, 6.14vw, 72px);
     line-height: 1.16;
     font-weight: 700;
     letter-spacing: -1.9px;
@@ -406,7 +411,7 @@ img {
     color: var(--dark);
     font-size: 48px;
     line-height: 1;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: -2.7px;
 }
 
@@ -573,6 +578,9 @@ img {
 
 /* ==================== Hero Section End ==================== */
 
+
+
+
 /* ==================== Animation Styles Start ==================== */
 
 .reveal-animation {
@@ -599,6 +607,9 @@ img {
 }
 
 /* ==================== Animation Styles End ==================== */
+
+
+
 
 /* ==================== Responsive Styles Start ==================== */
 
@@ -1123,10 +1134,10 @@ img {
 .section-heading {
     max-width: 610px;
     color: var(--dark);
-    font-size: clamp(42px, 4vw, 54px);
-    line-height: 1.15;
+    font-size: clamp(40px, 3.8vw, 48px);
+    line-height: 1.25;
     font-weight: 700;
-    letter-spacing: -1.55px;
+    letter-spacing: -1.005px;
 }
 
 .section-copy {
@@ -1139,6 +1150,8 @@ img {
 }
 
 /* ==================== Shared Section Styles End ==================== */
+
+
 
 /* ==================== About Section Start ==================== */
 
@@ -1315,7 +1328,7 @@ img {
 
 .about-stat-item h3 {
     color: var(--dark);
-    font-size: clamp(58px, 5vw, 74px);
+    font-size: clamp(58px, 4vw, 74px);
     line-height: 1;
     font-weight: 600;
     letter-spacing: -2.2px;
@@ -1518,7 +1531,6 @@ img {
 
 
 
-
 /* ==================== Services Section Start ==================== */
 
 .services-section {
@@ -1541,9 +1553,9 @@ img {
 
 .services-heading {
     max-width: 620px;
-    font-size: clamp(42px, 4.1vw, 56px);
-    line-height: 1.12;
-    letter-spacing: -1.65px;
+    font-size: clamp(40px, 3.8vw, 48px);
+    line-height: 1.25;
+    letter-spacing: -1.005px;
 }
 
 .services-copy {
@@ -1805,8 +1817,6 @@ img {
 
 
 
-
-
 /* ==================== Projects Section Start ==================== */
 
 .projects-section {
@@ -1865,10 +1875,10 @@ img {
 
 .projects-header h2 {
     color: var(--white);
-    font-size: clamp(42px, 4.05vw, 58px);
-    line-height: 1.15;
+    font-size: clamp(40px, 3.8vw, 48px);
+    line-height: 1.25;
     font-weight: 700;
-    letter-spacing: -1.65px;
+    letter-spacing: -1.005px;
 }
 
 .projects-header p {
@@ -2228,8 +2238,6 @@ img {
 
 
 
-
-
 /* ==================== Testimonials Section Start ==================== */
 
 .testimonials-section {
@@ -2518,8 +2526,6 @@ img {
 
 
 
-
-
 /* ==================== FAQ Section Start ==================== */
 
 .faq-section {
@@ -2542,8 +2548,8 @@ img {
     max-width: 650px;
     margin-inline: auto;
     font-size: clamp(42px, 4vw, 56px);
-    line-height: 1.12;
-    letter-spacing: -1.65px;
+    line-height: 1.25;
+    letter-spacing: -1.005px;
 }
 
 .faq-copy {
