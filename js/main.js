@@ -3,10 +3,7 @@ const navClose = document.getElementById("navClose");
 const mainNav = document.getElementById("mainNav");
 const menuOverlay = document.getElementById("menuOverlay");
 const revealItems = document.querySelectorAll(".reveal-animation");
-const counterNumbers = document.querySelectorAll(".counter-number");
-const counterSection = document.querySelector(".hero-stats");
-
-let countersStarted = false;
+const counterGroups = document.querySelectorAll(".hero-stats, .about-stats");
 
 const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -122,24 +119,22 @@ const animateCounter = (counter) => {
   requestAnimationFrame(updateCounter);
 };
 
-const startCounters = () => {
-  if (countersStarted) return;
+const startCounterGroup = (group) => {
+  if (group.dataset.counterStarted === "true") return;
 
-  countersStarted = true;
+  group.dataset.counterStarted = "true";
 
-  counterNumbers.forEach((counter) => {
+  group.querySelectorAll(".counter-number").forEach((counter) => {
     isReducedMotion ? setCounterFinalValue(counter) : animateCounter(counter);
   });
 };
 
-if (counterNumbers.length && counterSection) {
+if (counterGroups.length) {
   const counterObserver = new IntersectionObserver(
-    (entries, observer) => {
+    (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-
-        startCounters();
-        observer.disconnect();
+        startCounterGroup(entry.target);
       });
     },
     {
@@ -147,7 +142,7 @@ if (counterNumbers.length && counterSection) {
     }
   );
 
-  counterObserver.observe(counterSection);
+  counterGroups.forEach((group) => counterObserver.observe(group));
 }
 
 window.addEventListener("load", () => {
