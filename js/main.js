@@ -468,3 +468,51 @@ faqMoreBtn?.addEventListener("click", () => {
 
 
 
+/* ==================== Footer Functionality Start ==================== */
+
+const footerYear = document.getElementById("footerYear");
+const footerSubscribeForm = document.getElementById("footerSubscribeForm");
+const footerEmail = document.getElementById("footerEmail");
+const footerFormMessage = document.getElementById("footerFormMessage");
+
+if (footerYear) {
+  footerYear.textContent = new Date().getFullYear();
+}
+
+const isValidEmail = (email) => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};
+
+const showFooterMessage = (message, type = "success") => {
+  if (!footerFormMessage) return;
+
+  footerFormMessage.textContent = message;
+  footerFormMessage.classList.toggle("is-error", type === "error");
+};
+
+footerSubscribeForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const emailValue = footerEmail?.value.trim() || "";
+
+  if (!emailValue) {
+    showFooterMessage("Please enter your email address.", "error");
+    footerEmail?.focus();
+    return;
+  }
+
+  if (!isValidEmail(emailValue)) {
+    showFooterMessage("Please enter a valid email address.", "error");
+    footerEmail?.focus();
+    return;
+  }
+
+  showFooterMessage("Thank you! You are now subscribed.");
+  footerSubscribeForm.reset();
+
+  window.setTimeout(() => {
+    showFooterMessage("");
+  }, 3200);
+});
+
+/* ==================== Footer Functionality End ==================== */
